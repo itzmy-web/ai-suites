@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行业 AI 解决方案模板集 · AI Suites</title>
+<meta name="description" content="三大行业 AI 解决方案模板：法务智审中台（律所/法务部）、连锁药店数智平台、跨境电商 AI 工作台 —— 由七个独立 AI 应用融合而成。">
+<style>
+  :root{
+    --bg:#faf6ee; --panel:#fffdf8; --gold:#c9a227; --gold-deep:#a07e14;
+    --gold-grad:linear-gradient(120deg,#f0dc8e,#e6c96a 25%,#c9a227 50%,#a07e14 75%,#d9b948);
+    --ink:#2b2620; --muted:#8a7f6a; --line:#eadfc4;
+    --legal:#8c6d1f; --pharma:#2e7d4f; --ecom:#2c5f9e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;line-height:1.7;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
+  body::after{content:"";position:fixed;top:-220px;left:50%;transform:translateX(-50%);width:1100px;height:440px;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse at center,rgba(230,201,106,.28),transparent 65%);filter:blur(10px)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+  @keyframes gtext{to{background-position:200% center}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  ::selection{background:#e6c96a;color:#fff}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:10px;height:58px}
+  nav .brand{font-weight:800;font-size:16px;background:var(--gold-grad);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gtext 6s linear infinite}
+  nav .spacer{flex:1}
+  nav a.nl{font-size:13px;color:#6b5510;text-decoration:none;padding:6px 13px;border-radius:99px}
+  nav a.nl:hover{background:#f7efda}
+  nav a.gh{font-size:13px;font-weight:700;color:#fff;background:var(--gold-grad);background-size:200%;border-radius:99px;padding:7px 17px;text-decoration:none;animation:gtext 6s linear infinite}
+
+  header{position:relative;padding:96px 0 64px;text-align:center;overflow:hidden;
+    background:
+      radial-gradient(1100px 460px at 18% -10%, #f7ecc9 0%, transparent 60%),
+      radial-gradient(880px 380px at 88% 108%, #f3e6bd 0%, transparent 55%),
+      var(--bg);}
+  .ring{position:absolute;border-radius:50%;pointer-events:none}
+  .r1{width:440px;height:440px;border:1.5px dashed #e2cf8f;top:-150px;left:-130px;animation:spin 46s linear infinite}
+  .r2{width:300px;height:300px;border:1.5px solid #eed9a0;bottom:-90px;right:-100px;animation:spin 34s linear infinite reverse}
+  .dot{position:absolute;border-radius:50%;pointer-events:none;box-shadow:0 0 12px rgba(201,162,39,.8)}
+  .p1{width:13px;height:13px;background:#c9a227;top:150px;right:18%;animation:float 5s ease-in-out infinite}
+  .p2{width:9px;height:9px;background:#d9b948;bottom:110px;left:14%;animation:float 6s ease-in-out 1s infinite}
+  .p3{width:7px;height:7px;background:#e6c96a;top:90px;left:28%;animation:float 7s ease-in-out .4s infinite}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:3px;color:var(--gold-deep);border:1px solid var(--gold);
+    border-radius:99px;padding:5px 18px;margin-bottom:20px;background:#fffdf4}
+  header h1{font-size:48px;font-weight:900;letter-spacing:2px;
+    background:var(--gold-grad);background-size:220%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:gtext 7s linear infinite;filter:drop-shadow(0 4px 14px rgba(160,126,20,.22))}
+  header .en{font-size:13px;color:var(--muted);letter-spacing:5px;margin-top:10px;text-transform:uppercase}
+  .divider{width:64px;height:3px;border-radius:2px;background:var(--gold-grad);margin:24px auto}
+  header p.lead{max-width:680px;margin:0 auto;color:#4d4433;font-size:15.5px}
+  header p.lead b{color:var(--gold-deep)}
+  .hstats{display:flex;justify-content:center;gap:14px;margin-top:30px;flex-wrap:wrap}
+  .hstat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 30px;text-align:center;box-shadow:0 4px 18px rgba(160,126,20,.09)}
+  .hstat b{display:block;font-size:28px;font-weight:900;color:var(--gold-deep)}
+  .hstat span{font-size:12px;color:var(--muted)}
+
+  .section-title{font-size:25px;font-weight:900;margin:60px 0 8px;display:flex;align-items:center;gap:12px}
+  .section-title .sq{width:10px;height:10px;background:var(--gold-grad);border-radius:3px;transform:rotate(45deg)}
+  .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+  .section-sub{font-size:13.5px;color:var(--muted);margin-bottom:26px;padding-left:22px}
+
+  /* 三大套件卡片 */
+  .suite{position:relative;display:grid;grid-template-columns:120px 1fr;gap:24px;background:var(--panel);
+    border:1px solid var(--line);border-radius:20px;padding:34px 36px;margin-bottom:24px;overflow:hidden;
+    box-shadow:0 4px 18px rgba(160,126,20,.08);transition:transform .2s, box-shadow .2s;
+    opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease, box-shadow .2s}
+  .suite.in{opacity:1;transform:none}
+  .suite:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(160,126,20,.18)}
+  .suite::before{content:"";position:absolute;inset:0;border-radius:20px;padding:2px;
+    background:linear-gradient(135deg,var(--sc,#c9a227),var(--gold),var(--sc,#c9a227));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .25s;pointer-events:none}
+  .suite:hover::before{opacity:1}
+  .suite .badge{width:110px;height:110px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:#fff;font-size:44px;box-shadow:0 8px 22px var(--sc,.c9a227);align-self:center}
+  .suite .badge small{font-size:11px;font-weight:700;letter-spacing:1px;opacity:.9;margin-top:4px}
+  .suite h3{font-size:22px;font-weight:900;margin-bottom:2px}
+  .suite .who{display:inline-block;font-size:12px;font-weight:700;color:var(--sc);background:var(--scbg);
+    border-radius:99px;padding:3px 14px;margin:6px 0 10px}
+  .suite .desc{font-size:14px;color:#4d4433}
+  .suite .mods{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 16px}
+  .suite .mods span{font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:5px 14px;color:#5c5342}
+  .suite .mods span b{color:var(--sc)}
+  .btns{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{font-size:13.5px;font-weight:700;border-radius:10px;padding:10px 24px;text-decoration:none;transition:all .15s}
+  .b-demo{color:#fff;background:var(--gold-grad);background-size:200%;box-shadow:0 4px 14px rgba(160,126,20,.3);animation:gtext 6s linear infinite}
+  .b-demo:hover{filter:brightness(1.07);transform:translateY(-1px)}
+  .b-code{color:var(--gold-deep);background:#fff;border:1.5px solid var(--gold)}
+  .b-code:hover{background:#fbf6e7}
+  @media (max-width:720px){ .suite{grid-template-columns:1fr} header h1{font-size:34px} }
+
+  .story{background:var(--panel);border:1px dashed var(--gold);border-radius:16px;padding:22px 30px;margin:34px 0 10px;
+    font-size:14.5px;color:#4d4433;background:linear-gradient(120deg,#fffdf6,#fdf6e0)}
+  .story b{color:var(--gold-deep)}
+
+  footer{text-align:center;color:var(--muted);font-size:12.5px;padding:40px 0 48px;border-top:1px solid var(--line);margin-top:50px}
+  footer a{color:var(--gold-deep);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">🏛️ 行业 AI 解决方案模板集</span>
+    <span class="spacer"></span>
+    <a class="nl" href="https://itzmy-web.github.io/" target="_blank" rel="noopener">七大项目作品集 ↗</a>
+    <a class="gh" href="https://github.com/itzmy-web/ai-suites" target="_blank" rel="noopener">GitHub 源码 ↗</a>
+  </div>
+</nav>
+
+<header>
+  <span class="ring r1"></span><span class="ring r2"></span>
+  <span class="dot p1"></span><span class="dot p2"></span><span class="dot p3"></span>
+  <div class="wrap">
+    <div class="kicker">AI SUITES · INDUSTRY TEMPLATES</div>
+    <h1>行业 AI 解决方案模板集</h1>
+    <div class="en">itzmy-web · AI Suites · 2026</div>
+    <div class="divider"></div>
+    <p class="lead">将七个独立上线的 AI 应用按行业融合为 <b>三套开箱即用的解决方案模板</b> —— 每套统一登录、统一视觉、模块化挂载，可直接面向目标行业客户演示与交付。</p>
+    <div class="hstats">
+      <div class="hstat"><b>3</b><span>行业模板</span></div>
+      <div class="hstat"><b>7</b><span>融合的 AI 应用</span></div>
+      <div class="hstat"><b>7 / 7</b><span>模块在线可演示</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="section-title"><span class="sq"></span>三套模板</div>
+  <div class="section-sub">点击「进入套件演示」体验完整登录 + 模块工作台 · 各模块保留全部原始功能</div>
+
+  <!-- ① 法务 -->
+  <div class="suite" style="--sc:#8c6d1f;--scbg:#f3e8c8">
+    <div class="badge" style="background:linear-gradient(135deg,#d9b948,#8c6d1f)">⚖️<small>LEGAL</small></div>
+    <div>
+      <h3>① 法务智审中台 · LegalSuite</h3>
+      <span class="who">目标行业：企业法务部 / 律所</span>
+      <p class="desc">面向"合同多、法规杂、新人培养慢"的法务团队：合同智能审查、制度培训考核、法规检索问答，一站式覆盖法务日常工作流。</p>
+      <div class="mods">
+        <span><b>01</b> 合同智审 · 条款级风险识别 / 批量审查 / 审计留痕</span>
+        <span><b>02</b> 制度考练 · AI 抽题 / SRS 记忆 / 薄弱汇总</span>
+        <span><b>03</b> 法规智库 · 引用溯源 / 向量检索 / 私有化</span>
+      </div>
+      <div class="btns">
+        <a class="btn b-demo" href="./legal-suite/" target="_blank" rel="noopener">进入套件演示 ↗</a>
+        <a class="btn b-code" href="https://github.com/itzmy-web/ai-suites/tree/main/legal-suite" target="_blank" rel="noopener">模板源码 ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 药店 -->
+  <div class="suite" style="--sc:#2e7d4f;--scbg:#e3f0e4">
+    <div class="badge" style="background:linear-gradient(135deg,#c9a227,#2e7d4f)">💊<small>PHARMA</small></div>
+    <div>
+      <h3>② 连锁药店数智平台 · PharmaSuite</h3>
+      <span class="who">目标行业：连锁药店总部 / 门店</span>
+      <p class="desc">面向"数据在库里、报表等人跑"的连锁药店：店长用自然语言直接查销售库存会员数据，配医药领域智能助手做知识问答与补货分析。</p>
+      <div class="mods">
+        <span><b>01</b> 门店问数 · NL2SQL / 自然语言查数 / SSE 流式</span>
+        <span><b>02</b> 医药智能助手 · DeepAgents / 联网搜索 / RAG 增强</span>
+      </div>
+      <div class="btns">
+        <a class="btn b-demo" href="./pharma-suite/" target="_blank" rel="noopener">进入套件演示 ↗</a>
+        <a class="btn b-code" href="https://github.com/itzmy-web/ai-suites/tree/main/pharma-suite" target="_blank" rel="noopener">模板源码 ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 跨境 -->
+  <div class="suite" style="--sc:#2c5f9e;--scbg:#e3edf7">
+    <div class="badge" style="background:linear-gradient(135deg,#c9a227,#2c5f9e)">🌍<small>CROSS-BORDER</small></div>
+    <div>
+      <h3>③ 跨境电商 AI 工作台 · CrossBorderSuite</h3>
+      <span class="who">目标行业：跨境电商团队 / 品牌方 / 代运营</span>
+      <p class="desc">面向"客服成本高、运营盯盘累"的跨境卖家：AI 客服全天候在线降人力，多 Agent 运营助手把任务和看板自动化。</p>
+      <div class="mods">
+        <span><b>01</b> 跨境智能客服 · 三轨对话 / 数字人 / 评价看板</span>
+        <span><b>02</b> 运营增长助手 · 多 Agent 编排 / 异步任务 / 数据看板</span>
+      </div>
+      <div class="btns">
+        <a class="btn b-demo" href="./ecommerce-suite/" target="_blank" rel="noopener">进入套件演示 ↗</a>
+        <a class="btn b-code" href="https://github.com/itzmy-web/ai-suites/tree/main/ecommerce-suite" target="_blank" rel="noopener">模板源码 ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="story">
+    <b>融合思路：</b>七个独立上线的 AI 应用（合同审查、问题自检、RAG 智库、NL2SQL 问数、医药智能体、电商客服、电商运营），
+    按"业务域 + 技术栈亲和度"重组为三大行业模板 —— 统一登录与视觉规范，各模块以微服务方式挂载，
+    <b>任一模块升级互不影响，原始功能 100% 保留</b>。单项目作品集见
+    <a href="https://itzmy-web.github.io/" target="_blank" rel="noopener" style="color:var(--gold-deep)">itzmy-web.github.io ↗</a>。
+  </div>
+</div>
+
+<footer>
+  🏛️ itzmy-web · 行业 AI 解决方案模板集 · 由七大独立 AI 应用融合而成 · 2026
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target);}});},{threshold:.15});
+document.querySelectorAll(".suite").forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
